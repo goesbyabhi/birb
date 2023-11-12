@@ -20,7 +20,7 @@ function faviconFix() {
     chrome.runtime.getURL("../assets/favicon.png");
 }
 function logoFix() {
-  const twitterLogoSelector = 'h1[role="heading"] a[aria-label="Twitter"]';
+  const twitterLogoSelector = 'h1[role="heading"] a[aria-label="X"]';
   const element = document.querySelector(twitterLogoSelector);
   if (!element) {
     console.log("Logo not detected");
