@@ -3,6 +3,7 @@ const logoObserver = new MutationObserver((mutations) => {
     if (mutation.type === "childList") {
       logoFix();
       faviconFix();
+      premRemove();
     }
   });
 });
@@ -23,7 +24,7 @@ function logoFix() {
   const twitterLogoSelector = 'h1[role="heading"] a[aria-label="X"]';
   const element = document.querySelector(twitterLogoSelector);
   if (!element) {
-    console.log("Logo not detected");
+    console.log("Lmao Logo not detected");
     return;
   } else {
     const newLogo = document.createElement("img");
@@ -39,6 +40,18 @@ function logoFix() {
 function titleFix() {
   if (document.title.endsWith("X")) {
     document.title = document.title.slice(0, -1) + "Twitter";
+  }
+}
+
+function premRemove() {
+  const premiumSelector = 'nav[role="navigation"] a[aria-label="Premium"]';
+  const element = document.querySelector(premiumSelector);
+  if (!element) {
+    console.log("Lmao Premium Nav section not found");
+    return;
+  } else {
+    element.remove();
+    logoObserver.disconnect();
   }
 }
 
