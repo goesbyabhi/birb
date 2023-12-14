@@ -4,6 +4,7 @@ const logoObserver = new MutationObserver((mutations) => {
       logoFix();
       faviconFix();
       premRemove();
+	  grokRemove();
     }
   });
 });
@@ -55,7 +56,7 @@ function logoFix() {
   const element = document.querySelector(twitterLogoSelector);
 
   if (!element) {
-    console.log("Lmao Logo not detected");
+//    console.log("Lmao Logo not detected");
     return;
   } else {
     const theme = getCurrTheme();
@@ -72,7 +73,7 @@ function logoFix() {
         newLogo.src = chrome.runtime.getURL("../assets/twitter.svg");
         break;
       default:
-        console.log("Unknown theme");
+//        console.log("Unknown theme");
         return;
     }
 
@@ -95,12 +96,24 @@ function premRemove() {
   const premiumSelector = 'nav[role="navigation"] a[aria-label="Premium"]';
   const element = document.querySelector(premiumSelector);
   if (!element) {
-    console.log("Lmao Premium Nav section not found");
+//    console.log("Lmao Premium Nav section not found");
     return;
   } else {
     element.remove();
     logoObserver.disconnect();
   }
+}
+
+function grokRemove() {
+	const grokSelector = 'nav[role="navigation"] a[aria-label="Grok"]';
+	const element = document.querySelector(grokSelector);
+	if (!element) {
+//		console.log("Lmao Grok not found");
+		return;
+	} else {
+		element.remove();
+		logoObserver.disconnect();
+	}
 }
 
 logoObserver.observe(document.body, {
